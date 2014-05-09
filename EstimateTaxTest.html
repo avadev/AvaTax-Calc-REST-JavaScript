@@ -1,0 +1,41 @@
+<html>
+    <body>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script>
+		
+		$.ajax({
+		    url: 'avataxProxy.php',
+		    type: 'POST',
+			data: { 
+				method: 'estimateTax',
+				latitude: 47.627935 ,
+				longitude: -122.51702,
+				saleAmount: 10
+			},
+		    success: function(response) {
+				var geoTaxResult = JSON.parse(response);
+
+		        // Print results				
+		        document.write("EstimateTaxTest Result: " + geoTaxResult.ResultCode+ "<br/>");
+		        if (geoTaxResult.ResultCode != "Success")
+		        {
+		            for (var i = 0; i < geoTaxResult.Messages.length ; i++)
+		            {
+		                document.write(geoTaxResult.Messages[i].Summary+ "<br/>");
+		            }
+		        }
+		        else
+		        {
+		            document.write("Total Rate: " + geoTaxResult.Rate + " Total Tax: " + geoTaxResult.Tax+ "<br/>");
+
+		            for (var i = 0; i < geoTaxResult.TaxDetails.length ; i++)
+		            {
+		                document.write("    " + "Jurisdiction: " + geoTaxResult.TaxDetails[i].JurisName + " Tax: " + geoTaxResult.TaxDetails[i].Tax+ "<br/>");
+		            }              
+		        } 
+		    }
+		});
+		           
+        </script>
+    </body>
+</html>

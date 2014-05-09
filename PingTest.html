@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script>
+		$.ajax({
+		    url: 'avataxProxy.php',
+		    type: 'POST',
+			data: { 
+				method: 'ping'
+			},
+		    success: function(response) {
+				var geoTaxResult = JSON.parse(response);
+
+		        // Print results				
+		        document.write("PingTest Result: " + geoTaxResult.ResultCode+ "<br/>");
+		        if (geoTaxResult.ResultCode != "Success")
+		        {
+		            for (var i = 0; i < geoTaxResult.Messages.length ; i++)
+		            {
+		                document.write(geoTaxResult.Messages[i].Summary+ "<br/>");
+		            }
+		        }
+		    }
+		});
+		           
+        </script>
+    </body>
+</html>

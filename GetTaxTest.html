@@ -1,0 +1,132 @@
+<html>
+    <body>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script>
+		$.ajax({
+		    url: 'avataxGetTax.php',
+		    type: 'POST',
+			data:{
+			customerCode: "ABC4335",
+			docDate: "2014-01-01",
+			companyCode: "APITrialCompany",
+			client: "AvaTaxSample",
+			docCode: "INV001",
+			detailLevel: "Tax",
+			commit: "false",
+			docType: "SalesInvoice",
+
+			// Situational Request Document Parameters
+			// customerUsageType: "G",
+			// exemptionNo: "12345",
+			// discount: "50",
+			// taxOverride: {
+			//    taxOverrideType: "TaxDate",
+			//    reason: "Adjustment for return",
+			//    taxDate: "2013-07-01",
+			//    taxAmount: "0",
+			//    },
+
+			//Optional Request Parameters
+			purchaseOrderNo: "PO123456",
+			referenceCode: "ref123456",
+			posLaneCode: "09",
+			currencyCode: "USD",
+			
+			addresses: [
+			{
+			    addressCode: "01",
+			    line1: "45 Fremont Street",
+			    city: "San Francisco",
+			    region: "CA"    },
+
+
+			{
+			    addressCode: "02",
+			    line1: "118 N Clark St",
+			    line2: "Suite 100",
+			    line3: "ATTN Accounts Payable",
+			    city: "Chicago",
+			    region: "IL",
+			    country: "US",
+			    postalCode: "60602"    },
+
+
+			{
+			    addressCode: "03",
+			    latitude: "47.627935",
+			    longitude: "-122.51702"    }
+
+
+			],
+			lines: [
+			{
+			    lineNo: "01",
+			    itemCode: "N543",
+			    qty: "1",
+			    amount: "10",
+			    originCode: "01",
+			    destinationCode: "02",
+			    description: "Red Size 7 Widget",
+			    taxCode: "NT",
+			// Situational Request Parameters
+			//    customerUsageType: "L",
+			//    discounted: "true",
+			//    taxIncluded: "true",
+			//    taxOverride:
+			//    {
+			//        taxOverrideType: "TaxDate",
+			//        reason: "Adjustment for return",
+			//        taxDate: "2013-07-01",
+			//        taxAmount: "0"        },
+			    ref1: "ref123",
+			    ref2: "ref456"    },
+			{
+			    lineNo: "02",
+			    itemCode: "T345",
+			    qty: "3",
+			    amount: "150",
+			    originCode: "01",
+			    destinationCode: "03",
+			    description: "Size 10 Green Running Shoe",
+			    taxCode: "PC030147"    },
+			{
+			    lineNo: "02-FR",
+			    itemCode: "FREIGHT",
+			    qty: "1",
+			    amount: "15",
+			    originCode: "01",
+			    destinationCode: "03",
+			    description: "Shipping Charge",
+			    taxCode: "FR"    },
+			    ],
+			},
+		    success: function(response) {
+				var getTaxResult = JSON.parse(response);
+				//Print Results
+				document.write('GetTaxTest Result: ' + getTaxResult.ResultCode  + "<br/>");
+				if(getTaxResult.ResultCode != 'Success')	// call failed
+				{	
+		            for (var i = 0; i < getTaxResult.Messages.length ; i++)
+		            {
+		                document.write(getTaxResult.Messages[i].Summary+ "<br/>");
+		            }
+				}
+				else
+				{
+					document.write("Document Code: " + getTaxResult.DocCode + " Total Tax: " + getTaxResult.TotalTax  + "<br/>");
+					for (var i = 0; i < getTaxResult.TaxLines.length; i++)
+					{
+						document.write( "    " + "Line Number: " + getTaxResult.TaxLines[i].LineNo + " Line Tax: " + getTaxResult.TaxLines[i].Tax + "<br/>");
+						for (var j = 0; j< getTaxResult.TaxLines[i].TaxDetails.length; j++)
+						{
+							document.write("        " + "Jurisdiction: " + getTaxResult.TaxLines[i].TaxDetails[j].JurisName + " Tax: " + getTaxResult.TaxLines[i].TaxDetails[j].Tax + "<br/>");
+						}
+					}
+				}	
+				
+		    }
+		});
+		           
+        </script>
+    </body>
+</html>

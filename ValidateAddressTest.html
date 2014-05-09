@@ -1,0 +1,46 @@
+<html>
+    <body>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script>
+		$.ajax({
+		    url: 'avataxProxy.php',
+		    type: 'POST',
+			data: { 
+				method: 'validateAddress',
+				line1: "118 N Clark St",
+				line2: "Suite 100",
+				line3: "ATTN Accounts Payable",
+				city: "Chicago",
+				region: "IL",
+				postalCode: "60602",
+				country: "US"
+			},
+		    success: function(response) {
+				var validateResult = JSON.parse(response);
+
+				// Print Results
+				document.write('ValidateAddressTest Result: ' + validateResult.ResultCode + "<br/>");
+		        if (validateResult.ResultCode != "Success")
+		        {
+		            for (var i = 0; i < validateResult.Messages.length ; i++)
+		            {
+		                document.write(validateResult.Messages[i].Summary+ "<br/>");
+		            }
+		        }
+				else
+				{
+					document.write(validateResult.ValidAddress.Line1
+					                    + " " 
+					                    + validateResult.ValidAddress.City
+					                    + ", "
+					                    + validateResult.ValidAddress.Region
+					                    + " " 
+					                    + validateResult.ValidAddress.PostalCode + "<br/>");
+
+				}
+		    }
+		});
+		           
+        </script>
+    </body>
+</html>

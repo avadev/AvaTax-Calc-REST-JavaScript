@@ -1,0 +1,31 @@
+<html>
+    <body>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script>
+		$.ajax({
+		    url: 'avataxProxy.php',
+		    type: 'POST',
+			data: { 
+				method: 'cancelTax',
+				companyCode: 'APITrialCompany',
+				docType: 'SalesInvoice',
+				docCode: 'INV001',
+				cancelCode: 'DocVoided'
+			},
+		    success: function(response) {
+				var cancelTaxResult = JSON.parse(response);
+				document.write('CancelTaxTest Result: ' + cancelTaxResult.ResultCode + "<br/>");
+				// Print Results
+				if(cancelTaxResult.ResultCode != "Success")
+				{	
+		            for (var i = 0; i < cancelTaxResult.Messages.length ; i++)
+		            {
+		                document.write(cancelTaxResult.Messages[i].Summary+ "<br/>");
+		            }
+				}
+		    }
+		});
+		           
+        </script>
+    </body>
+</html>
