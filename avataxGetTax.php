@@ -1,8 +1,8 @@
 <?php
 require('AvaTaxClasses/AvaTax.php');
 
-$serviceURL = "https://development.avalara.net";
-$accountNumber = "account.admin.1100014690";
+$serviceURL = "************";
+$accountNumber = "*******";
 $licenseKey = "avalara";
 	
 $taxSvc = new TaxServiceRest($serviceURL, $accountNumber, $licenseKey);
