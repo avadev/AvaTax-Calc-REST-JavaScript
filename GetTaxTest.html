@@ -1,11 +1,10 @@
 <html>
     <body>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-        <script>
-		$.ajax({
-		    url: 'avataxGetTax.php',
-		    type: 'POST',
-			data:{
+		<script type="text/javascript" src="AvaTax.js"></script>
+		
+		<script type="text/javascript">
+		var getTaxRequest = {
 			customerCode: "ABC4335",
 			docDate: "2014-01-01",
 			companyCode: "APITrialCompany",
@@ -99,9 +98,8 @@
 			    description: "Shipping Charge",
 			    taxCode: "FR"    },
 			    ],
-			},
-		    success: function(response) {
-				var getTaxResult = JSON.parse(response);
+			};
+	    	GetTax(getTaxRequest, function(getTaxResult){
 				//Print Results
 				document.write('GetTaxTest Result: ' + getTaxResult.ResultCode  + "<br/>");
 				if(getTaxResult.ResultCode != 'Success')	// call failed
@@ -124,8 +122,7 @@
 					}
 				}	
 				
-		    }
-		});
+		    });
 		           
         </script>
     </body>

@@ -1,7 +1,7 @@
 <?php
 $serviceURL = "https://development.avalara.net";
-$accountNumber = "account.admin.1100014690";
-$licenseKey = "avalara";
+$accountNumber = "1234567890";
+$licenseKey = "A1B2C3D4E5F6G7H8";
 
 $uri = $_POST['uri'];
 $method = $_POST['method'];

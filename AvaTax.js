@@ -42,7 +42,28 @@ function CancelTax(cancelTaxRequest, callback) {
 	
 }
 
-function GetTax(){}
+function GetTax(getTaxRequest, callback){
+	var uri = "tax/get";
+	
+	if("client" in getTaxRequest){
+		var Client = getTaxRequest.client;
+		delete getTaxRequest['client'];
+		getTaxRequest['Client'] = Client;		
+	}
+	
+	var request = JSON.stringify(getTaxRequest);
+	$.ajax({
+	    url: 'avatax.php',
+	    type: 'POST',
+		data: {
+			request: request,
+			uri: uri,
+			method: "POST"
+		},
+	    success: function(response) {
+			callback(JSON.parse(response));
+		}});	
+}
 
 function ValidateAddress(address, callback){
 	var uri = "address/validate?" + jQuery.param(address);
