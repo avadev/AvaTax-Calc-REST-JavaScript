@@ -5,15 +5,6 @@ $serviceURL = "https://development.avalara.net";
 $accountNumber = "account.admin.1100014690";
 $licenseKey = "avalara";
 
-
-/*$taxSvc = new TaxServiceRest($serviceURL, $accountNumber, $licenseKey);
-
-$estimateTaxRequest = new EstimateTaxRequest($_POST['latitude'], $_POST['longitude'], $_POST['saleAmount']);
-
-$geoTaxResult = $taxSvc->estimateTax($estimateTaxRequest);
-echo json_encode($geoTaxResult);
-*/
-
 $uri = $_POST['uri'];
 $method = $_POST['method'];
 $request = $_POST['request']; 

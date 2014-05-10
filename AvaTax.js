@@ -12,6 +12,14 @@ function EstimateTax(geoTaxRequest, callback) {
 		}});
 }
 
+function Ping(callback){
+	EstimateTax({
+			latitude: 47.627935 ,
+			longitude: -122.51702,
+			saleAmount: 10
+			} , callback);
+}
+
 function CancelTax(cancelTaxRequest, callback) {
 	var uri = "tax/cancel";
 	var request = JSON.stringify(cancelTaxRequest);
@@ -35,5 +43,5 @@ function CancelTax(cancelTaxRequest, callback) {
 }
 
 function GetTax(){}
-function Ping(){}
+
 function ValidateAddress(){}
