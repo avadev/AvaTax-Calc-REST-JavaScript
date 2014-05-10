@@ -1,20 +1,17 @@
 <html>
     <body>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script>
+		<script type="text/javascript" src="AvaTax.js"></script>
 		
-		$.ajax({
-		    url: 'avataxProxy.php',
-		    type: 'POST',
-			data: { 
-				method: 'estimateTax',
-				latitude: 47.627935 ,
-				longitude: -122.51702,
-				saleAmount: 10
-			},
-		    success: function(response) {
-				var geoTaxResult = JSON.parse(response);
-
+		<script type="text/javascript">
+		
+		geoTaxRequest = {
+			latitude: 47.627935 ,
+			longitude: -122.51702,
+			saleAmount: 10
+		};
+		
+		EstimateTax(geoTaxRequest, function(geoTaxResult){
 		        // Print results				
 		        document.write("EstimateTaxTest Result: " + geoTaxResult.ResultCode+ "<br/>");
 		        if (geoTaxResult.ResultCode != "Success")
@@ -33,9 +30,8 @@
 		                document.write("    " + "Jurisdiction: " + geoTaxResult.TaxDetails[i].JurisName + " Tax: " + geoTaxResult.TaxDetails[i].Tax+ "<br/>");
 		            }              
 		        } 
-		    }
-		});
+			});
 		           
-        </script>
+		</script>
     </body>
 </html>
