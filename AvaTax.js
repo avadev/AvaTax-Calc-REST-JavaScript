@@ -44,4 +44,16 @@ function CancelTax(cancelTaxRequest, callback) {
 
 function GetTax(){}
 
-function ValidateAddress(){}
+function ValidateAddress(address, callback){
+	var uri = "address/validate?" + jQuery.param(address);
+	$.ajax({
+	    url: 'avatax.php',
+	    type: 'POST',
+		data: {
+			uri: uri,
+			method: "GET"
+		},
+	    success: function(response) {
+			callback(JSON.parse(response));
+		}});	
+}
