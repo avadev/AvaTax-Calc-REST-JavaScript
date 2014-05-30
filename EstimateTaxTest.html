@@ -1,8 +1,7 @@
 <html>
     <body>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="AvaTax.js"></script>
-		
+		<script type="text/javascript" src="AvaTax.js"></script>		
 		<script type="text/javascript">
 		
 		geoTaxRequest = {
@@ -11,22 +10,16 @@
 			saleAmount: 10
 		};
 		
-		EstimateTax(geoTaxRequest, function(geoTaxResult){
+		EstimateTax(geoTaxRequest, function(geoTaxResult) {
 		        // Print results				
 		        document.write("EstimateTaxTest Result: " + geoTaxResult.ResultCode+ "<br/>");
-		        if (geoTaxResult.ResultCode != "Success")
-		        {
-		            for (var i = 0; i < geoTaxResult.Messages.length ; i++)
-		            {
+		        if (geoTaxResult.ResultCode != "Success") {
+		            for (var i = 0; i < geoTaxResult.Messages.length ; i++) {
 		                document.write(geoTaxResult.Messages[i].Summary+ "<br/>");
 		            }
-		        }
-		        else
-		        {
+		        } else {
 		            document.write("Total Rate: " + geoTaxResult.Rate + " Total Tax: " + geoTaxResult.Tax+ "<br/>");
-
-		            for (var i = 0; i < geoTaxResult.TaxDetails.length ; i++)
-		            {
+		            for (var i = 0; i < geoTaxResult.TaxDetails.length ; i++) {
 		                document.write("    " + "Jurisdiction: " + geoTaxResult.TaxDetails[i].JurisName + " Tax: " + geoTaxResult.TaxDetails[i].Tax+ "<br/>");
 		            }              
 		        } 

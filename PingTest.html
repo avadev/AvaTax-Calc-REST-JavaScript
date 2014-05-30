@@ -1,17 +1,14 @@
 <html>
     <body>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="AvaTax.js"></script>
-		
+		<script type="text/javascript" src="AvaTax.js"></script>		
 		<script type="text/javascript">
 		
 		Ping(function(geoTaxResult) {
  			   // Print results				
 		        document.write("PingTest Result: " + geoTaxResult.ResultCode+ "<br/>");
-		        if (geoTaxResult.ResultCode != "Success")
-		        {
-		            for (var i = 0; i < geoTaxResult.Messages.length ; i++)
-		            {
+		        if (geoTaxResult.ResultCode != "Success") {
+		            for (var i = 0; i < geoTaxResult.Messages.length ; i++) {
 		                document.write(geoTaxResult.Messages[i].Summary+ "<br/>");
 		            }
 		        }

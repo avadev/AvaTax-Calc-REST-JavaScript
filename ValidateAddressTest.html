@@ -1,8 +1,7 @@
 <html>
     <body>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="AvaTax.js"></script>
-		
+		<script type="text/javascript" src="AvaTax.js"></script>	
 		<script type="text/javascript">
 
 			var address = { 
@@ -14,18 +13,15 @@
 				postalCode: "60602",
 				country: "US"
 			};
+			
 			ValidateAddress(address, function(validateResult){
 				// Print Results
 				document.write('ValidateAddressTest Result: ' + validateResult.ResultCode + "<br/>");
-		        if (validateResult.ResultCode != "Success")
-		        {
-		            for (var i = 0; i < validateResult.Messages.length ; i++)
-		            {
+		        if (validateResult.ResultCode != "Success") {
+		            for (var i = 0; i < validateResult.Messages.length ; i++) {
 		                document.write(validateResult.Messages[i].Summary+ "<br/>");
 		            }
-		        }
-				else
-				{
+		        } else {
 					document.write(validateResult.Address.Line1
 	                    + " " 
 	                    + validateResult.Address.City
@@ -33,7 +29,6 @@
 	                    + validateResult.Address.Region
 	                    + " " 
 	                    + validateResult.Address.PostalCode + "<br/>");
-
 				}
 		    });
 		           

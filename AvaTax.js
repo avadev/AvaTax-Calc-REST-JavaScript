@@ -1,5 +1,7 @@
 function EstimateTax(geoTaxRequest, callback) {
-	var uri = "tax/" + geoTaxRequest.latitude + "," + geoTaxRequest.longitude + "/get?" + "saleamount=" + geoTaxRequest.saleAmount;
+	var uri = "tax/" + 
+		geoTaxRequest.latitude + "," + geoTaxRequest.longitude + 
+		"/get?" + "saleamount=" + geoTaxRequest.saleAmount;
 	$.ajax({
 	    url: 'avatax.php',
 	    type: 'POST',
@@ -9,17 +11,16 @@ function EstimateTax(geoTaxRequest, callback) {
 		},
 	    success: function(response) {
 			callback(JSON.parse(response));
-		}});
+		}
+	});
 }
-
-function Ping(callback){
+function Ping(callback) {
 	EstimateTax({
 			latitude: 47.627935 ,
 			longitude: -122.51702,
 			saleAmount: 10
 			} , callback);
 }
-
 function CancelTax(cancelTaxRequest, callback) {
 	var uri = "tax/cancel";
 	var request = JSON.stringify(cancelTaxRequest);
@@ -38,19 +39,17 @@ function CancelTax(cancelTaxRequest, callback) {
 			else{
 				callback(JSON.parse(response));
 			}
-		}});	
-	
+		}
+	});		
 }
 
-function GetTax(getTaxRequest, callback){
-	var uri = "tax/get";
-	
+function GetTax(getTaxRequest, callback) {
+	var uri = "tax/get";	
 	if("client" in getTaxRequest){
 		var Client = getTaxRequest.client;
 		delete getTaxRequest['client'];
 		getTaxRequest['Client'] = Client;		
-	}
-	
+	}	
 	var request = JSON.stringify(getTaxRequest);
 	$.ajax({
 	    url: 'avatax.php',
@@ -62,10 +61,11 @@ function GetTax(getTaxRequest, callback){
 		},
 	    success: function(response) {
 			callback(JSON.parse(response));
-		}});	
+		}
+	});	
 }
 
-function ValidateAddress(address, callback){
+function ValidateAddress(address, callback) {
 	var uri = "address/validate?" + jQuery.param(address);
 	$.ajax({
 	    url: 'avatax.php',
@@ -76,5 +76,6 @@ function ValidateAddress(address, callback){
 		},
 	    success: function(response) {
 			callback(JSON.parse(response));
-		}});	
+		}
+	});	
 }

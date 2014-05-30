@@ -1,8 +1,7 @@
 <html>
     <body>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="AvaTax.js"></script>
-		
+		<script type="text/javascript" src="AvaTax.js"></script>		
 		<script type="text/javascript">
 		
 		var	cancelTaxRequest =  { 
@@ -12,16 +11,15 @@
 			cancelCode: 'DocVoided'
 		};
 			
-	    CancelTax(cancelTaxRequest, function(cancelTaxResult){
+	    CancelTax(cancelTaxRequest, function(cancelTaxResult) {
 			document.write('CancelTaxTest Result: ' + cancelTaxResult.ResultCode + "<br/>");
 			// Print Results
-			if(cancelTaxResult.ResultCode != "Success")
-			{	
-	            for (var i = 0; i < cancelTaxResult.Messages.length ; i++)
-	            {
+			if(cancelTaxResult.ResultCode != "Success") {	
+	            for (var i = 0; i < cancelTaxResult.Messages.length ; i++) {
 	                document.write(cancelTaxResult.Messages[i].Summary+ "<br/>");
 	            }
-		}});
+			}
+		});
 		           
         </script>
     </body>

@@ -1,9 +1,9 @@
 <html>
     <body>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="AvaTax.js"></script>
-		
+		<script type="text/javascript" src="AvaTax.js"></script>		
 		<script type="text/javascript">
+
 		var getTaxRequest = {
 			customerCode: "ABC4335",
 			docDate: "2014-01-01",
@@ -99,29 +99,23 @@
 			    taxCode: "FR"    },
 			    ],
 			};
-	    	GetTax(getTaxRequest, function(getTaxResult){
+			
+	    	GetTax(getTaxRequest, function(getTaxResult) {
 				//Print Results
 				document.write('GetTaxTest Result: ' + getTaxResult.ResultCode  + "<br/>");
-				if(getTaxResult.ResultCode != 'Success')	// call failed
-				{	
-		            for (var i = 0; i < getTaxResult.Messages.length ; i++)
-		            {
+				if(getTaxResult.ResultCode != 'Success') {	
+		            for (var i = 0; i < getTaxResult.Messages.length ; i++) {
 		                document.write(getTaxResult.Messages[i].Summary+ "<br/>");
 		            }
-				}
-				else
-				{
+				} else {
 					document.write("Document Code: " + getTaxResult.DocCode + " Total Tax: " + getTaxResult.TotalTax  + "<br/>");
-					for (var i = 0; i < getTaxResult.TaxLines.length; i++)
-					{
+					for (var i = 0; i < getTaxResult.TaxLines.length; i++) {
 						document.write( "    " + "Line Number: " + getTaxResult.TaxLines[i].LineNo + " Line Tax: " + getTaxResult.TaxLines[i].Tax + "<br/>");
-						for (var j = 0; j< getTaxResult.TaxLines[i].TaxDetails.length; j++)
-						{
+						for (var j = 0; j< getTaxResult.TaxLines[i].TaxDetails.length; j++) {
 							document.write("        " + "Jurisdiction: " + getTaxResult.TaxLines[i].TaxDetails[j].JurisName + " Tax: " + getTaxResult.TaxLines[i].TaxDetails[j].Tax + "<br/>");
 						}
 					}
-				}	
-				
+				}					
 		    });
 		           
         </script>
