@@ -9,7 +9,6 @@ This is a barebones JavaScript sample demonstrating the [AvaTax REST API](http:/
  
 Dependencies:
 -----------
-- jQuery 1.6.2 or later
 - PHP 5.0 or later
 
 
